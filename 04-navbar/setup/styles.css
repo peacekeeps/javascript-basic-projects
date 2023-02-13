@@ -38,6 +38,7 @@ img.logo {
     font-size: 1.5em;
     color: hsl(205, 78%, 60%);
     transition: .5s;
+    cursor: pointer;
 }
 
 .nav-toggle:hover {
@@ -45,8 +46,18 @@ img.logo {
     color: black;
 }
 
-ul.links {
+ul {
     list-style-type: none;   
+}
+
+.links {
+    height: 0;
+    overflow: hidden; /* To hide the links */
+    transition: .3s;
+}
+
+ul.show-menu {
+    height: 150.4px;
 }
 
 .links a {
@@ -81,7 +92,7 @@ ul.social-icons {
     }
 
     .nav-header {
-        display: block;
+        display: flex;
         max-width: 100%;
         margin: 0;
         padding: 0;
@@ -99,9 +110,16 @@ ul.social-icons {
 
     .fab {
         color: hsl(205, 78%, 60%);
+        transition: .3s;
+    }
+
+    .fab:hover {
+        color: hsl(205, 65%, 71%);
     }
 
     ul.links {
+        /* height: auto; */
+        height: 100%; 
         display: flex;
         flex-direction: row;
     }
