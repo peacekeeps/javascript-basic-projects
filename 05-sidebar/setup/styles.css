@@ -68,11 +68,10 @@ body {
 
 }
 
-body > button {
-    display: flex;
-    position: absolute;
-    left: calc(100vw - 60px);
-    padding: 1rem;
+main > button {
+    position: fixed;
+    left: calc(100vw - 64px);
+    margin: 1rem;
 }
 
 button {
@@ -110,7 +109,8 @@ NavBar
 ==========
 */
 
-nav {
+aside {
+    position: fixed;
     display: grid;
     grid-template-rows: 72px auto 72px;
     grid-template-areas:
@@ -121,6 +121,11 @@ nav {
     width: 500px;
     height: 100%;
     background-color: var(--clr-white);
+    transition: var(--transition);
+}
+
+.hide-menu {
+    left: -100%;
 }
 
 /* Header */
@@ -194,4 +199,10 @@ a {
 
 .social-container a:hover {
     color: var(--clr-primary-4);
+}
+
+@media screen and (max-width: 600px) {
+    aside {
+        width: 100%;
+    }
 }

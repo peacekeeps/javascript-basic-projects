@@ -29,3 +29,54 @@ const reviews = [
     text: 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
   },
 ];
+
+const userPic = document.getElementById("user-pic")
+const userName = document.querySelector("#user-name")
+const userJob = document.getElementById("user-job")
+const userReview = document.getElementById("user-review")
+
+const btns = document.querySelectorAll(".btn")
+
+console.log(btns)
+
+btns.forEach(function(btn) {
+  btn.addEventListener("click", function(e) {
+    target = e.currentTarget.classList
+    if (target.contains("surprise")) {
+      currentItem = Math.floor(Math.random() * 4)
+      showPerson(currentItem)
+    } else if (target.contains("right")) {
+      if (currentItem < reviews.length - 1) {
+        currentItem++
+      } else {
+        currentItem = 0
+      }
+    } else {
+      if (currentItem == 0) {
+        currentItem = 3
+      } else {
+        currentItem--
+      } 
+    }
+    showPerson(currentItem)
+  })
+})
+
+console.log(userPic, userName, userJob, userReview)
+
+// set starting item
+let currentItem = 0
+
+// load initial item
+window.addEventListener("DOMContentLoaded", function () {
+  showPerson(currentItem)
+})
+
+function showPerson(person) {
+  const item = reviews[currentItem]
+  userPic.src = item.img
+  userName.textContent = item.name
+  userJob.textContent = item.job
+  userReview.textContent = item.text
+}
+
