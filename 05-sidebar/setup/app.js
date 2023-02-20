@@ -5,7 +5,7 @@ console.log(btn)
 
 btn.forEach(function(btn) {
     btn.addEventListener("click", function() {
-        containerEl.classList.toggle("hide-el")
+        containerEl.classList.toggle("hide-menu")
         console.log(btn)
     })
 })
