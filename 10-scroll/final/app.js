@@ -66,6 +66,10 @@ scrollLinks.forEach((link) => {
     const fixedNav = navbar.classList.contains("fixed-nav");
     let position = element.offsetTop - navHeight;
 
+    /* Nesse momento, se o menu estiver aberto, position está recebendo a altura de todo o elemento NAV, que vai considerar a altura do menu (linksContainer)
+
+    É por isso que temos a segunda condicional, ele analisa se o menu está aberto (navHeight > 82) e se for o caso, ele considera essa altura extra para somar com o valor POSITION. Isso porque o menu é fechado automáticamente após o clique, e esse espaço extra fica sobrando */
+    
     if (!fixedNav) {
       position = position - navHeight;
     }

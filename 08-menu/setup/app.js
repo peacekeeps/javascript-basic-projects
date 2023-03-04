@@ -1,3 +1,9 @@
+/*
+==========================
+Variables
+==========================
+*/
+
 const menu = [
   {
     id: 1,
@@ -72,3 +78,80 @@ const menu = [
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
+
+const sectionCenter = document.querySelector(".section-center")
+
+const btnContainer = document.querySelector(".btn-container")
+
+/*
+==========================
+Events
+==========================
+*/
+
+window.addEventListener('DOMContentLoaded', function () {
+  displayMenuItems(menu)
+
+  displayBtn(menu)
+})
+
+/*
+==========================
+Functions
+==========================
+*/
+
+// To iterate through the menu obj and return an html formated element that displays the menu item
+function displayMenuItems(menuItems) {
+  let displayMenu = menuItems.map(function (item) {
+
+    return `
+      <article class="menu-item">
+        <img src=${item.img} alt=${item.title} class="photo">
+        <div class="item-info">
+          <header>
+            <h4>${item.title}</h4>
+            <h4 class="price">$${item.price}</h4>
+          </header>
+          <p class="item-text">${item.desc}</p>
+        </div>
+      </article>`
+    })
+    displayMenu = displayMenu.join("")
+    sectionCenter.innerHTML = displayMenu
+}
+
+// To dinamically create the buttons
+function displayBtn(array) {
+  const categories = array.reduce(function(values, item) {
+    if (!values.includes(item.category)) {
+      values.push(item.category)
+    }
+    return values
+  },['all'])
+
+  const catBtns = categories.map(function(category) {
+    return `<button class="filter-btn" type="button" data-id=${category}>${category}</button>`
+  }).join("")
+
+  btnContainer.innerHTML = catBtns
+
+  const filterBtn = btnContainer.querySelectorAll(".filter-btn")
+}
+
+// To make the filter buttons work
+filterBtn.forEach(function (btn) {
+  btn.addEventListener("click", function(e) {
+    const category = e.currentTarget.dataset.id //dataset é um tipo de identificador que conversa entre html e js, mas não altera nada no html
+    const menuCategory /*nova array*/ = menu.filter(function(menuItem) {
+      if (menuItem.category == category) { //escolhe os que tem a mesma categoria
+        return menuItem
+      }
+    })
+    if (category === "all") {
+      displayMenuItems(menu)
+    } else {
+      displayMenuItems(menuCategory)
+    }
+  })
+})
